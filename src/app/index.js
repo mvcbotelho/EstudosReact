@@ -10,7 +10,8 @@ const dados = {
   location: {
     city: 'Fortaleza',
     state: 'Ceará',
-    country: 'Brasil'
+    country: 'Brasil',
+    zipCode: '60000-000'
   }
 }
 
@@ -30,13 +31,13 @@ class App extends Component {
     return (
       <div>
         <Welcome name="Marcus"/>
-        <Informations /> 
-        <Informations 
+        <Informations data={dados} /> 
+        {/* <Informations 
           name={name} 
           lastName={lastName} 
           city={city}
           state={state}
-          country={country} /> 
+          country={country} />  */}
           <div>
             <h2>Teste com estado</h2>
             <h3>{this.state.text}</h3>
@@ -57,4 +58,6 @@ export default App;
 *** Se eu retirar o defaultProps de Information, ele da erro. Mas porque?
 *** Sempre que ocorre uma mudança de estado o render é chamado novamente, como posso
 chamar apenas a função que foi modificada, sem renderizar tudo em tela?
+
+*** Ver conceito de componentes mais a fundo.
 */
