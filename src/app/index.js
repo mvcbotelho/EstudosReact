@@ -3,6 +3,8 @@ import './App.css'
 
 import Welcome from './Components/Welcome'
 import Informations from './Components/Information'
+import Button from './Components/Button' 
+import Square from './Components/Square'
 
 const dados = {
   name: 'Marcus',
@@ -16,36 +18,44 @@ const dados = {
 }
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
 
     this.state = {
-      text: 'Teste'
+      text: 'Teste',
+      color: 'white'
     }
   }
   render() {
-    const { name, lastName, location: { city, state, country }} = dados
+    const { name, lastName, location: { city, state, country } } = dados
     console.log(dados)
     console.log(dados.location)
     console.log(city)
     return (
       <div>
-        <Welcome name="Marcus"/>
-        <Informations data={dados} /> 
-        {/* <Informations 
-          name={name} 
-          lastName={lastName} 
-          city={city}
-          state={state}
-          country={country} />  */}
-          <div>
-            <h2>Teste com estado</h2>
-            <h3>{this.state.text}</h3>
-            <button 
-              onClick={() => {this.setState(
+        <Welcome name="Marcus" />
+        <Informations data={dados} />
+        <div>
+          <h2>Teste com estado</h2>
+          <h3>{this.state.text}</h3>
+          <button
+            onClick={() => {
+              this.setState(
                 { text: 'Clicado' }
-              )}} >Clique aqui!!!</button>
-          </div>
+              )
+            }} >Clique aqui!!!</button>
+        </div>
+        <div>
+          <Square color={this.state.color} />
+          {['red', 'green', 'blue', 'yellow', 'black'].map(color => (
+            <Button
+              key={color}
+              handleClick={() => this.setState({ color })}>
+              {color}
+            </Button>
+          ))
+          }
+        </div>
       </div>
     )
   }
